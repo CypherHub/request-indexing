@@ -81,6 +81,9 @@ export default defineNuxtConfig({
   },
   ui: {
     icons: ['heroicons', 'simple-icons', 'ph'],
+    // Required by @nuxt/ui runtime CSS (e.g. outline-primary)
+    primary: 'green',
+    gray: 'zinc',
   },
   app: {
     pageTransition: {
