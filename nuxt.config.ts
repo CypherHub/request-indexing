@@ -6,7 +6,6 @@ let tokens: Partial<OAuthPoolToken>[] = env.NUXT_OAUTH_POOL ? JSON.parse(env.NUX
 const privateTokens: Partial<OAuthPoolToken>[] = env.NUXT_OAUTH_PRIVATE_POOL ? JSON.parse(env.NUXT_OAUTH_PRIVATE_POOL) : []
 
 export default defineNuxtConfig({
-  extends: ['@nuxt/ui-pro'],
   modules: [
     'nuxt-auth-utils',
     'dayjs-nuxt',

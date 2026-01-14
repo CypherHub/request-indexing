@@ -36,7 +36,7 @@ This project is an effort to prove that and was a success. I shipped the first v
 Built With:
 
 - [Nuxt](https://nuxt.com)
-- [Nuxt UI Pro](https://ui.nuxt.com/pro?aff=5zj9e)
+- [Nuxt UI](https://ui.nuxt.com)
 - [Nuxt SEO](https://nuxtseo.com)
 - [Google APIs](https://developers.google.com/apis-explorer)
 
@@ -88,15 +88,7 @@ pnpm dev
 
 5. Building your site:
 
-To build and deploy site you will need to purchase a [Nuxt UI Pro](https://ui.nuxt.com/pro?aff=5zj9e) license.
-
-Once you have your license update your `.env` file with your license key:
-
-```bash
-NUXT_UI_PRO_LICENSE_KEY=<license>
-```
-
-Then run the build command:
+Run the build command:
 
 ```bash
 pnpm build
