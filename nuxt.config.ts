@@ -5,6 +5,32 @@ import type { OAuthPoolToken } from '~/types'
 let tokens: Partial<OAuthPoolToken>[] = env.NUXT_OAUTH_POOL ? JSON.parse(env.NUXT_OAUTH_POOL) : []
 const privateTokens: Partial<OAuthPoolToken>[] = env.NUXT_OAUTH_PRIVATE_POOL ? JSON.parse(env.NUXT_OAUTH_PRIVATE_POOL) : []
 
+function getAppStorageConfig() {
+  // Prefer a networked store for multi-instance/serverless deployments.
+  // - Upstash: https://upstash.com/ (REST-based Redis)
+  // - Redis: any managed/self-hosted Redis with a single URL
+  if (env.NUXT_UPSTASH_REDIS_REST_URL && env.NUXT_UPSTASH_REDIS_REST_TOKEN) {
+    return {
+      driver: 'upstash',
+      url: env.NUXT_UPSTASH_REDIS_REST_URL,
+      token: env.NUXT_UPSTASH_REDIS_REST_TOKEN,
+    } as const
+  }
+
+  if (env.NUXT_REDIS_URL) {
+    return {
+      driver: 'redis',
+      url: env.NUXT_REDIS_URL,
+    } as const
+  }
+
+  // Fallback: local filesystem storage (works for single-node deployments).
+  return {
+    driver: 'fs',
+    base: '.db',
+  } as const
+}
+
 export default defineNuxtConfig({
   modules: [
     'nuxt-auth-utils',
@@ -75,7 +101,7 @@ export default defineNuxtConfig({
     },
     storage: {
       app: {
-        driver: 'vercelKV',
+        ...getAppStorageConfig(),
       },
     },
   },
