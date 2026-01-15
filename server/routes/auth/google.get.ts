@@ -1,5 +1,5 @@
 import { defu } from 'defu'
-import { getUser, getUserToken, incrementMetric, updateUserToken } from '~/server/utils/storage'
+import { getUser, getUserToken, incrementMetric, updateUser, updateUserToken } from '~/server/utils/storage'
 import { googleAuthEventHandler } from '~/server/utils/auth/googleAuthEventHandler'
 import { getHashSecure } from '~/server/composables/auth'
 import type { UserSession } from '~/types'
